@@ -64,11 +64,18 @@ Estos reportes incluyen métricas, curvas, matrices de confusión y ejemplos vis
 - [Especificación resumida](docs/especificacion-resumida.md)
 - [Arquitectura y etapas](docs/arquitectura-y-etapas.md)
 - [Procesamiento de imágenes](docs/procesamiento-imagenes.md)
+- 
+## Nota
+
+No se incluyen datasets completos, modelos entrenados pesados ni información sensible del entorno original.
+El foco del repositorio es mostrar el análisis, la organización del proyecto y la línea técnica trabajada.
 
 ## Estructura del repositorio
 
 ```text
 docs/       Documentación funcional y técnica resumida
-samples/    Ejemplos de imágenes de entrada y salida
+samples/    Espacio reservado para ejemplos de entrada y salida
 src/        Código fuente o scripts limpios
-training/   Notas sobre dataset y entrenamiento
+training/   Reportes de entrenamiento, métricas y resultados visuales
+
+
