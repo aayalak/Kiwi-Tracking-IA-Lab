@@ -86,10 +86,11 @@ El foco del repositorio es mostrar el análisis, la organización del proyecto y
 
 ## Estructura del repositorio
 
+## Estructura del repositorio
+
 ```text
 docs/       Documentación funcional y técnica resumida
 samples/    Espacio reservado para ejemplos de entrada y salida
 src/        Código fuente o scripts limpios
 training/   Reportes de entrenamiento, métricas y resultados visuales
-
-
+```
