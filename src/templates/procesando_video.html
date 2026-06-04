@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="text-center">
+    <h3>Procesando video: {{ video_filename }}</h3>
+    <div id="frame_viewer" class="my-4">
+      <img src="/stream_video?filename={{ video_filename }}" style="max-width:100%;height:auto" alt="Procesando...">
+    </div>
+    <div>
+        <a href="/galeria" class="btn btn-success mt-4">Ver resultados en galería</a>
+    </div>
+</div>
+{% endblock %}

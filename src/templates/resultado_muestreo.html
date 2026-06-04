@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+  <h2>Resultado de muestreo: {{ video_name }}</h2>
+
+  <div class="alert alert-info">
+    <b>Frames muestreados:</b> {{ resumen.frames }} &nbsp; | &nbsp;
+    <b>Objetos detectados:</b> {{ resumen.objetos }}
+    <div class="mt-2">
+      {% for c, n in resumen.por_clase.items() %}
+        <span class="badge bg-secondary me-1">{{ c }}: {{ n }}</span>
+      {% endfor %}
+      {% if resumen.por_clase|length == 0 %}
+        <span class="text-muted">Sin objetos detectados.</span>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <a class="btn btn-success" href="/video_demo_ssim/{{ video_name }}">Ver stream con overlay</a>
+    <a class="btn btn-outline-secondary" href="/SSIM/logs/{{ video_name.split('.')[0] }}_muestreo.json" target="_blank">Ver JSON</a>
+  </div>
+
+  <!-- GALERÍA DE FRAMES MUESTREADOS -->
+  <h5 class="mt-4">Frames muestreados</h5>
+  {% if detalles and detalles|length > 0 %}
+    <div class="grid thumbs">
+      {% for item in detalles %}
+        <a class="thumb" href="/SSIM/frames_muesteados/{{ item.frame_jpg }}" target="_blank" title="{{ item.timestamp_ms }} ms">
+          <img src="/SSIM/frames_muesteados/{{ item.frame_jpg }}" alt="frame {{ loop.index }}">
+          <small>{{ item.timestamp_ms }} ms</small>
+        </a>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="text-muted">No se generaron frames muestreados para este video.</p>
+  {% endif %}
+
+  <!-- GALERÍA DE FRAMES ANOTADOS -->
+  <h5 class="mt-4">Frames anotados</h5>
+  {% set anotados = detalles|selectattr('frame_anotado_jpg')|list %}
+  {% if anotados|length > 0 %}
+    <div class="grid thumbs">
+      {% for item in anotados %}
+        <a class="thumb" href="/SSIM/frames_anotados/{{ item.frame_anotado_jpg }}" target="_blank" title="{{ item.timestamp_ms }} ms">
+          <img src="/SSIM/frames_anotados/{{ item.frame_anotado_jpg }}" alt="anotado {{ loop.index }}">
+          <small>{{ item.timestamp_ms }} ms</small>
+        </a>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="text-muted">No hay frames anotados con detecciones.</p>
+  {% endif %}
+
+  <!-- LISTA DETALLADA POR TIMESTAMP -->
+  <h5 class="mt-4">Detalle por timestamp</h5>
+  {% if detalles and detalles|length > 0 %}
+    <ul class="detalle-list">
+      {% for item in detalles %}
+        <li class="detalle-item">
+          <div class="detalle-head">
+            <b>{{ item.timestamp_ms }} ms</b>
+            <span class="sep">—</span>
+            <a href="/SSIM/frames_muesteados/{{ item.frame_jpg }}" target="_blank">frame</a>
+            {% if item.frame_anotado_jpg %}
+              <span class="sep">|</span>
+              <a href="/SSIM/frames_anotados/{{ item.frame_anotado_jpg }}" target="_blank">anotado</a>
+            {% endif %}
+          </div>
+
+          {% if item.objetos and item.objetos|length > 0 %}
+            <div class="grid recortes">
+              {% for obj in item.objetos %}
+                <div class="recorte-card">
+                  <div class="recorte-head">
+                    <span class="badge bg-info text-dark">{{ obj.clase }}</span>
+                    <span class="conf">{{ '%.0f'|format(obj.conf * 100) }}%</span>
+                  </div>
+                  {% if obj.recorte %}
+                    <a href="/SSIM/recortes/{{ obj.recorte }}" target="_blank">
+                      <img src="/SSIM/recortes/{{ obj.recorte }}" alt="recorte {{ loop.index }}">
+                    </a>
+                  {% else %}
+                    <div class="noimg">Sin recorte</div>
+                  {% endif %}
+                  <small class="bbox">bbox: {{ obj.bbox }}</small>
+                </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <small class="text-muted">Sin objetos en este frame.</small>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="text-muted">No hay detalle para mostrar.</p>
+  {% endif %}
+</div>
+
+<style>
+  .grid.thumbs {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 10px;
+  }
+  .thumb {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #fff;
+  }
+  .thumb img {
+    display: block;
+    width: 100%;
+    height: 90px;
+    object-fit: cover;
+  }
+  .thumb small {
+    display: block;
+    padding: 6px 8px;
+    color: #555;
+  }
+  .detalle-list {
+    list-style: none;
+    padding-left: 0;
+  }
+  .detalle-item {
+    border: 1px solid #e6e6e6;
+    border-radius: 12px;
+    padding: 10px 12px;
+    margin-bottom: 14px;
+    background: #fff;
+  }
+  .detalle-head a { text-decoration: none; }
+  .detalle-head .sep { color: #999; margin: 0 6px; }
+  .grid.recortes {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 10px;
+  }
+  .recorte-card {
+    border: 1px solid #e6e6e6;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #fff;
+  }
+  .recorte-head {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 6px 8px; border-bottom: 1px solid #eee;
+  }
+  .recorte-card img {
+    display: block; width: 100%; height: 120px; object-fit: cover;
+  }
+  .noimg { padding: 20px; text-align: center; color: #999; }
+  .bbox { display: block; padding: 6px 8px; color: #666; }
+  @media (prefers-color-scheme: dark) {
+    .thumb, .detalle-item, .recorte-card { background: #1e1e1e; border-color: #333; }
+    .thumb small, .bbox { color: #bbb; }
+  }
+</style>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row justify-content-center mb-4">
+    <div class="col-md-8 text-center">
+        <h2 class="mb-4">Detección en tiempo real de kiwis</h2>
+        <!--<p class="lead">Captura y procesamiento de video en vivo para detectar kiwis.</p>-->
+        <p class="text-muted">Estado de captura: <strong>{% if capturando %}En curso{% else %}Detenido{% endif %}</strong></p>
+        <div class="mb-3 border rounded shadow p-2 bg-white">
+            <img src="/video_feed" width="640" height="480" class="img-fluid border border-success" style="background:#222;">
+        </div>
+        <form method="post" action="/iniciar" class="d-inline">
+            <button class="btn btn-success btn-lg me-2" type="submit" {% if capturando %}disabled{% endif %}>Comenzar captura</button>
+        </form>
+        <form method="post" action="/detener" class="d-inline">
+            <button class="btn btn-danger btn-lg" type="submit" {% if not capturando %}disabled{% endif %}>Finalizar captura</button>
+        </form>
+        <form method="post" action="/procesar_video" enctype="multipart/form-data" class="mt-4">
+            <label>Subir video MP4 para procesar:</label>
+            <input type="file" name="video_file" accept="video/mp4" required>
+            <button class="btn btn-primary" type="submit">Procesar video</button>
+        </form>
+        <!--<form method="get" action="/procesar_video_ssim" class="mt-3">
+            <button class="btn btn-warning" type="submit">Procesar video (demo SSIM)</button>
+        </form>-->
+        <p class="mt-4"><a class="btn btn-outline-secondary" href="/galeria">Ver galería de capturas</a></p>
+    </div>
+</div>
+{% endblock %}

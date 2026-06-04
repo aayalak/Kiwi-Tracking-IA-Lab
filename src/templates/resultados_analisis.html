@@ -1,0 +1,97 @@
+<style>
+  .kiwi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 12px;
+    margin: 12px 0;
+  }
+  .kiwi-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 8px;
+    background: #fff;
+    font-size: 13px;
+    line-height: 1.3;
+  }
+  .kiwi-card img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .badge-kiwi {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    background: #d9f5df;
+    color: #007944;
+  }
+</style>
+
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+  <h2>Resultados del análisis</h2>
+  <a href="/analizar_imagenes">Volver a analizar más imágenes</a>
+  {% for resultado in resultados %}
+
+  <div style="margin-bottom:2em;">
+    <h4>{{ resultado.archivo_original.split('/')[-1] }} — {{ resultado.timestamp }}</h4>
+    <!-- MAPA -->
+    <div style="max-width:400px;">
+      <div id="mapa-{{ loop.index }}" style="height:200px; border-radius:10px; margin-bottom:1em;"></div>
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          var map = L.map('mapa-{{ loop.index }}').setView([-38.23583, -57.87030], 17);
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap'
+          }).addTo(map);
+          L.marker([-38.23583, -57.87030]).addTo(map).bindPopup("Ubicación simulada de la foto").openPopup();
+          var areaCoords = [
+            [-38.23629, -57.87166],
+            [-38.23482, -57.86984],
+            [-38.23557, -57.86871],
+            [-38.23665, -57.87015]
+          ];
+          L.polygon(areaCoords, { color: 'green', fillOpacity: 0.2 }).addTo(map)
+            .bindPopup('Área de la cooperativa');
+        });
+      </script>
+    </div>
+    <!-- FIN MAPA -->
+
+    <pre>{{ resultado.metadata | tojson(indent=2) }}</pre>
+    <img src="/analisis_imagenes/{{ resultado.archivo_original.split('/')[-1] }}" width="440"
+      style="border:1px solid #888;">
+    <img src="/resultados_detecciones_kiwi/{{ resultado.archivo_deteccion.split('/')[-1] }}" width="440" style="border:1px solid #007944; margin-left:1em;">
+    <strong>Objetos detectados: {{ resultado.cantidad_objetos }}</strong>
+    <div class="kiwi-grid">
+  {% for obj in resultado.objetos %}
+    <div class="kiwi-card">
+      <img src="/recortes_analisis/{{ obj.recorte.split('/')[-1] }}" alt="{{ obj.clase }}">
+      <div>
+        <span class="badge-kiwi">{{ obj.clase | capitalize }}</span>
+        — {{ '%.2f'|format(obj.confianza*100) }}%
+      </div>
+      <div>
+        Bounding Box: {{ obj.bbox }}
+      </div>
+      <div>
+        <b>Calibre estimado:</b><br>
+        {{ obj.ancho_px }} × {{ obj.alto_px }} px  
+        ({{ (obj.ancho_mm / 10) | round(2) }} cm × {{ (obj.alto_mm / 10) | round(2) }} cm,  
+        área: {{ (obj.area_mm2 / 100) | round(2) }} cm²)
+      </div>
+    </div>
+  {% endfor %}
+</div>
+  </div>
+  {% endfor %}
+  <a href="/analizar_imagenes">Volver a analizar más imágenes</a>
+</div>
+{% endblock %}

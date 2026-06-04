@@ -1,0 +1,77 @@
+/* ----- Ajustes para KiwiTrackingIA ----- */
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/* Sidebar */
+.sidebar {
+    border-right: 2px solid #e9ecef;
+    box-shadow: 1px 0 4px rgba(60,80,60,0.04);
+}
+
+.sidebar .nav-link {
+    transition: background 0.15s, color 0.2s;
+}
+
+.sidebar .nav-link.active, .sidebar .nav-link:hover {
+    font-weight: 500;
+}
+
+/* Contenido principal */
+.content-area h2, .content-area h4 {
+    color: #141920;
+}
+
+/* Imágenes en galería y análisis */
+img.recorte {
+    border-radius: 10px;
+    border: 2px solid #198754;
+    margin: 6px;
+    transition: transform .1s;
+}
+img.recorte:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #a2d5c6;
+}
+
+/* Botones principales */
+.btn-primary, .btn-success {
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+/* Footer */
+footer small {
+    letter-spacing: 0.5px;
+    font-size: 1em;
+}
+
+/* Formulario drag-and-drop */
+.dropzone {
+    border: 2px dashed #198754;
+    border-radius: 10px;
+    padding: 20px;
+    background: #f1fdf6;
+    text-align: center;
+    color: #198754;
+    margin-bottom: 18px;
+}
+.dropzone.dragover {
+    background: #c2f0db;
+    border-color: #145a32;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        min-width: 100px;
+        max-width: 120px;
+        font-size: 0.95em;
+        padding-top: 16px;
+    }
+    .content-area {
+        padding: 12px;
+    }
+}
+
+

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Galería de capturas</h2>
+{% for reg in registros %}
+  <div class="card mb-3">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="/capturas/{{ reg.archivo_captura.split('/')[-1] }}" class="img-fluid rounded" alt="captura">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">Fecha: {{ reg.timestamp }}</h5>
+          <p class="card-text">Kiwis detectados: {{ reg.kiwis_detectados | length }}</p>
+          <ul>
+            {% for k in reg.kiwis_detectados %}
+              <li>
+                <img src="/recortes/{{ k.archivo_recorte.split('/')[-1] }}" width="64" alt="recorte">
+                Confianza: {{ k.confianza_porcentaje }}%
+                Box: {{ k.box }}
+                ({{ k.ancho }}x{{ k.alto }})
+                <span class="badge bg-secondary">{{ reg.origen }}</span>
+              </li>
+            {% endfor %}
+          </ul>
+          <form method="post" action="/borrar">
+            <input type="hidden" name="archivo_captura" value="{{ reg.archivo_captura }}">
+            <button class="btn btn-danger btn-sm" type="submit">Eliminar captura</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% else %}
+  <p>No hay capturas guardadas aún.</p>
+{% endfor %}
+{% endblock %}

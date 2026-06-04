@@ -1,0 +1,112 @@
+<style>
+  .recortes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 12px;
+    margin: 12px 0;
+  }
+  .recorte-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 8px;
+    background: #fff;
+    font-size: 13px;
+    line-height: 1.3;
+  }
+  .recorte-card img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .badge {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .badge-femenina  { background:#f8d7e3; color:#c2185b; }
+  .badge-masculina { background:#d7e7f8; color:#1976d2; }
+  .badge-otra      { background:#d9f5df; color:#007944; }
+</style>
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+  <h2>Resultados del análisis de flores</h2>
+  <a href="/analizar_imagenes_flor">Volver a analizar más imágenes</a>
+  <!-- style="margin-bottom:2em; padding:1em; background:#e9f5e7; border-radius: 10px; box-shadow:0 1px 4px #ccc;">
+    <h3>Totales de la sesión:</h3>
+    <strong style="font-size:1.1em;">Total de flores detectadas: {{ total_general }}</strong><br>
+    <span style="color: #c2185b;">Femeninas:</span> <b>{{ total_femeninas }}</b> &nbsp; | &nbsp;
+    <span style="color: #1976d2;">Masculinas:</span> <b>{{ total_masculinas }}</b>
+    </div>-->
+  {% for resultado in resultados %}
+
+  <div style="margin-bottom:2em;">
+    <h4>{{ resultado.archivo_original.split('/')[-1] }} — {{ resultado.timestamp }}</h4>
+    <!-- MAPA -->
+    <div style="max-width:400px;">
+      <div id="mapa-{{ loop.index }}" style="height:200px; border-radius:10px; margin-bottom:1em;"></div>
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          var map = L.map('mapa-{{ loop.index }}').setView([-38.23583, -57.87030], 17);
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap'
+          }).addTo(map);
+          L.marker([-38.23583, -57.87030]).addTo(map).bindPopup("Ubicación simulada de la foto").openPopup();
+          var areaCoords = [
+            [-38.23629, -57.87166],
+            [-38.23482, -57.86984],
+            [-38.23557, -57.86871],
+            [-38.23665, -57.87015]
+          ];
+          L.polygon(areaCoords, { color: 'green', fillOpacity: 0.2 }).addTo(map)
+            .bindPopup('Área de la cooperativa');
+        });
+      </script>
+    </div>
+    <!-- FIN MAPA -->
+
+    <pre>{{ resultado.metadata | tojson(indent=2) }}</pre>
+    <img src="/analisis_imagenes_flor/{{ resultado.archivo_original.split('/')[-1] }}" width="500" style="border:1px solid #888;">
+    <img src="/resultados_detecciones_flor/{{ resultado.archivo_deteccion.split('/')[-1] }}" width="500" style="border:1px solid #007944; margin-left:1em;">
+
+    <!-- NUEVO: Resumen de detección de flores -->
+    <div style="margin-bottom: 1em;">
+      <strong style="font-size:1.1em;">Total de flores detectadas: {{ resultado.cantidad_total }}</strong><br>
+      <span style="color: #c2185b;">Femeninas:</span> <b>{{ resultado.cantidad_femeninas }}</b> &nbsp; | &nbsp;
+      <span style="color: #1976d2;">Masculinas:</span> <b>{{ resultado.cantidad_masculinas }}</b>
+    </div>
+    <!-- FIN NUEVO -->
+
+    <strong>Detalle de detecciones:</strong>
+    <div class="recortes-grid">
+  {% for obj in resultado.objetos %}
+    <div class="recorte-card">
+      <img src="/recortes_analisis_flor/{{ obj.recorte }}" alt="{{ obj.clase }}">
+      <div>
+        <span class="badge badge-{{ obj.clase|lower }};" style="color: black;">
+          {{ obj.clase|capitalize }}
+        </span>
+        — {{ '%.2f'|format(obj.confianza*100) }}%
+      </div>
+      <div>
+        Bounding Box: {{ obj.bbox }}
+      </div>
+      <div>
+        {{ obj.ancho_px }} × {{ obj.alto_px }} px  
+        ({{ (obj.ancho_mm / 10) | round(2) }} cm × {{ (obj.alto_mm / 10) | round(2) }} cm,  
+        área: {{ (obj.area_mm2 / 100) | round(2) }} cm²)
+      </div>
+    </div>
+  {% endfor %}
+</div>
+  </div>
+  {% endfor %}
+  <a href="/analizar_imagenes_flor">Volver a analizar más imágenes de flores</a>
+</div>
+{% endblock %}

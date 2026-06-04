@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container" style="max-width:600px;">
+  <h2 class="mb-4">Subir y analizar imágenes de yemas</h2>
+  <form id="form-analisis_flor" action="/analizar_imagenes_yemas" enctype="multipart/form-data" method="post">
+     <div id="dropzone" class="dropzone mb-3">
+      <label for="fileInput" style="cursor:pointer;">
+        <strong>Arrastrá aquí tus imágenes o hacé click para seleccionar</strong>
+      </label>
+      <input id="fileInput" type="file" name="files" accept="image/*" multiple required style="display:none;">
+    </div>
+    <div id="preview" class="d-flex flex-wrap mb-3"></div>
+    <button type="submit" class="btn btn-success btn-lg w-100">Procesar imágenes</button>
+  </form>
+</div>
+
+
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+const preview = document.getElementById('preview');
+
+// Variable para mantener la lista de archivos actual
+let selectedFiles = [];
+
+// Click sobre el dropzone abre el selector
+dropzone.addEventListener('click', () => fileInput.click());
+
+// Drag & drop para cargar archivos
+dropzone.addEventListener('dragover', function(e) {
+  e.preventDefault();
+  dropzone.classList.add('dragover');
+});
+
+dropzone.addEventListener('dragleave', function(e) {
+  e.preventDefault();
+  dropzone.classList.remove('dragover');
+});
+
+dropzone.addEventListener('drop', function(e) {
+  e.preventDefault();
+  dropzone.classList.remove('dragover');
+  selectedFiles = Array.from(e.dataTransfer.files);
+  updateFileInput();
+  showPreview();
+});
+
+// Cuando cambia el input (por click), también actualizá la variable
+fileInput.addEventListener('change', function() {
+  selectedFiles = Array.from(fileInput.files);
+  showPreview();
+});
+
+// Forzá la sincronización de input.files con la variable
+function updateFileInput() {
+  // Creamos un DataTransfer para asignar los archivos seleccionados
+  const dataTransfer = new DataTransfer();
+  selectedFiles.forEach(f => dataTransfer.items.add(f));
+  fileInput.files = dataTransfer.files;
+}
+
+// Muestra la vista previa
+function showPreview() {
+  preview.innerHTML = "";
+  if (!selectedFiles) return;
+  for (const file of selectedFiles) {
+    if (!file.type.startsWith('image/')) continue;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const img = document.createElement('img');
+      img.src = e.target.result;
+      img.className = 'recorte me-2 mb-2';
+      img.style.width = '120px';
+      preview.appendChild(img);
+    }
+    reader.readAsDataURL(file);
+  }
+}
+</script>
+{% endblock %}

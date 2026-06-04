@@ -1,0 +1,23 @@
+{
+  "timestamp": "2025-08-26T18:24:00",
+  "archivo_original": "imagen_demo.jpg",
+  "archivo_resultado": "resultados_detecciones_kiwi/deteccion_demo.jpg",
+  "cantidad_objetos": 3,
+  "objetos": [
+    {
+      "clase": "kiwi",
+      "confianza": 0.91,
+      "confianza_porcentaje": 91,
+      "box": [120, 80, 210, 175],
+      "ancho": 90,
+      "alto": 95,
+      "area": 8550
+    }
+  ],
+  "metadata": {
+    "operador": "Demo",
+    "sensor": "Camara",
+    "evento": 12345
+  }
+}
+
