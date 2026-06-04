@@ -1,14 +1,27 @@
 # Training
 
-Esta carpeta está pensada para documentar el proceso de entrenamiento de modelos.
+Esta carpeta contiene reportes de entrenamiento experimentales realizados sobre distintas clases vinculadas al ciclo del kiwi.
 
-Por el momento no se incluyen datasets completos ni modelos entrenados pesados.
+No se incluyen datasets completos ni modelos entrenados pesados.
 
-Aspectos a documentar:
+## Reportes disponibles
 
-- estructura del dataset;
-- clases utilizadas;
-- herramienta de etiquetado;
-- modelo base;
-- métricas obtenidas;
-- observaciones sobre falsos positivos y falsos negativos.
+- [Resumen de entrenamientos](resumen-entrenamientos.md)
+- [Yemas](entrenamiento-yemas.md)
+- [Brotes](entrenamiento-brotes.md)
+- [Flor](entrenamiento-flor.md)
+- [Kiwis](entrenamiento-kiwis.md)
+
+## Contenido
+
+Los reportes incluyen:
+
+- configuración general del entrenamiento;
+- métricas principales;
+- curvas y gráficos generados durante el entrenamiento;
+- matrices de confusión;
+- observaciones sobre desempeño y posibles mejoras.
+
+## Nota
+
+Los resultados corresponden a pruebas experimentales. No representan un modelo productivo final.
