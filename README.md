@@ -63,15 +63,15 @@ Estos reportes incluyen métricas, curvas, matrices de confusión y ejemplos vis
 
 ### Prototipo de gestión agrícola
 
-![Backoffice](docs/screenshots/efarm-backoffice.png)
+![Backoffice](docs/screenshots/Kiwi_BackOfficce.jpg)
 
 ### Detección y análisis de frutos
 
-![Detección de kiwi](docs/screenshots/kiwi-detection.png)
+![Detección de kiwi](docs/screenshots/Kiwi_deteccion.jpg)
 
 ### Detección de flores masculinas y femeninas
 
-![Detección de flores](docs/screenshots/flower-detection.png)
+![Detección de flores](docs/screenshots/Kiwi_flor_deteccion_dos.jpg)
 
 ## Documentación
 
