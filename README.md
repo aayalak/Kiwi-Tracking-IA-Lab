@@ -73,7 +73,7 @@ Estos reportes incluyen métricas, curvas, matrices de confusión y ejemplos vis
 
 ![Detección de flores](docs/screenshots/Kiwi_flor_deteccion_dos.jpg)
 
-##Código representativo
+## Código representativo
 
 La carpeta src/ contiene una selección de código representativo del prototipo KiwiTrackingIA.
 
