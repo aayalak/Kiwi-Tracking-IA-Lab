@@ -55,5 +55,5 @@ No se incluyen:
 
 ## Nota de portfolio
 
-Esta carpeta excluye datasets, capturas, recortes, resultados, logs, videos, bases locales y pesos entrenados. El objetivo es mostrar arquitectura y codigo representativo sin publicar datos operativos o archivos pesados.
+Esta carpeta excluye datasets, capturas, recortes, resultados, logs, videos, bases locales y pesos entrenados. El objetivo es mostrar arquitectura y código representativo sin publicar datos operativos o archivos pesados.
 
