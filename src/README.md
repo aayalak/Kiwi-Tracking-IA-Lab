@@ -28,7 +28,13 @@ Archivos de ejemplo para comprender el flujo de procesamiento.
 
 ### docs/
 
-Documentación técnica complementaria.
+Documentación técnica complementaria específica del código publicado en esta carpeta.
+
+### Documentación general del proyecto
+
+La documentación funcional y técnica general se encuentra en:
+
+* [Documentación principal](../docs/)
 
 ## Alcance
 
@@ -52,16 +58,8 @@ No se incluyen:
 * HTML
 * CSS
 
-
 ## Nota de portfolio
 
-Esta carpeta excluye datasets, capturas, recortes, resultados, logs, videos, bases locales y pesos entrenados. El objetivo es mostrar arquitectura y código representativo sin publicar datos operativos o archivos pesados.
+Esta carpeta excluye datasets, capturas, recortes, resultados, logs, videos, bases locales y pesos entrenados.
 
-## Código representativo
-
-La carpeta [`src/`](src/) contiene una selección de código representativo del prototipo KiwiTrackingIA.
-
-Incluye componentes relacionados con FastAPI, integración con YOLO, OpenCV, procesamiento de imágenes, procesamiento de video y plantillas HTML utilizadas durante las pruebas.
-
-Los modelos entrenados, datasets, capturas, videos y archivos generados no forman parte del código publicado.
-
+El objetivo es mostrar arquitectura y código representativo sin publicar datos operativos o archivos pesados.
