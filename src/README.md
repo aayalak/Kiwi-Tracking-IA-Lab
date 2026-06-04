@@ -57,3 +57,11 @@ No se incluyen:
 
 Esta carpeta excluye datasets, capturas, recortes, resultados, logs, videos, bases locales y pesos entrenados. El objetivo es mostrar arquitectura y código representativo sin publicar datos operativos o archivos pesados.
 
+## Código representativo
+
+La carpeta [`src/`](src/) contiene una selección de código representativo del prototipo KiwiTrackingIA.
+
+Incluye componentes relacionados con FastAPI, integración con YOLO, OpenCV, procesamiento de imágenes, procesamiento de video y plantillas HTML utilizadas durante las pruebas.
+
+Los modelos entrenados, datasets, capturas, videos y archivos generados no forman parte del código publicado.
+
