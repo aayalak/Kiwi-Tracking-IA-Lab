@@ -1,61 +1,57 @@
-# KiwiTrackingIA - Portfolio
+# Código representativo
 
-Version curada para portfolio profesional de una aplicacion de vision por computadora para seguimiento y analisis de kiwis.
+Esta carpeta contiene una selección de código representativo extraído del proyecto KiwiTrackingIA.
 
-## Objetivo
-
-Mostrar una integracion completa entre FastAPI, YOLO, OpenCV y procesamiento de imagenes para:
-
-- deteccion en tiempo real desde camara;
-- procesamiento de videos;
-- analisis por imagen para kiwis, flores, brotes y yemas;
-- muestreo adaptativo de frames con SSIM y flujo optico;
-- visualizacion web con templates HTML.
-
-## Stack
-
-- Python
-- FastAPI
-- Jinja2
-- OpenCV
-- PyTorch
-- Ultralytics YOLO
-- scikit-image
-- Bootstrap
+El objetivo es mostrar parte de la integración realizada entre FastAPI, YOLO, OpenCV, procesamiento de imágenes y procesamiento de video.
 
 ## Estructura
 
-```text
-app/
-  main.py
-utils/
-  video_sampler.py
-templates/
-static/
-examples/
-docs/
-```
+### app/
 
-## Modelos
+Contiene el punto de entrada principal de la aplicación y la integración con FastAPI.
 
-Los modelos entrenados no se incluyen en este repositorio por peso y buenas practicas de publicacion. El codigo espera modelos YOLO en una carpeta local `modelos/`.
+### utils/
 
-Ver `docs/MODELOS.md` para los nombres esperados y la politica recomendada para distribuirlos.
+Funciones auxiliares utilizadas para procesamiento y muestreo de video.
 
-## Ejecucion local
+### templates/
 
-```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-uvicorn app.main:app --reload
-```
+Plantillas HTML utilizadas en las pruebas de interfaz web.
 
-La aplicacion queda disponible en:
+### static/
 
-```text
-http://127.0.0.1:8000
-```
+Recursos estáticos utilizados por la interfaz.
+
+### examples/
+
+Archivos de ejemplo para comprender el flujo de procesamiento.
+
+### docs/
+
+Documentación técnica complementaria.
+
+## Alcance
+
+El código incluido busca mostrar la arquitectura y los componentes principales utilizados durante las pruebas.
+
+No se incluyen:
+
+* datasets completos
+* modelos entrenados
+* videos de prueba
+* imágenes privadas
+* resultados generados
+* archivos temporales
+
+## Tecnologías
+
+* Python
+* FastAPI
+* YOLO
+* OpenCV
+* HTML
+* CSS
+
 
 ## Nota de portfolio
 
