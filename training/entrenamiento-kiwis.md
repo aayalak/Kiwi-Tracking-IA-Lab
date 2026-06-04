@@ -55,7 +55,9 @@ No representa un modelo final ni una solución lista para producción.
 
 ### Ejemplo de predicción sobre validación
 
-![Predicción de validación](assets/kiwis-val-batch0-pred.jpg)
+![Predicción de validación](assets/deteccion_20250826_182721_20250709_083720_51FF986CA6904748A80F71B19B2CF300_jpg.rf.c7fa01858301a37742c10a12ee10cca1.jpg)
+![Predicción de validación](assets/Kiwi_EccoKiwi_deteccion_comparativa.jpg)
+
 
 ### Distribución de etiquetas
 
