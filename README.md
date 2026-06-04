@@ -59,6 +59,12 @@ El repositorio incluye reportes de entrenamiento experimentales para distintas c
 
 Estos reportes incluyen métricas, curvas, matrices de confusión y ejemplos visuales de predicción.
 
+## Documentación
+
+- [Especificación resumida](docs/especificacion-resumida.md)
+- [Arquitectura y etapas](docs/arquitectura-y-etapas.md)
+- [Procesamiento de imágenes](docs/procesamiento-imagenes.md)
+
 ## Estructura del repositorio
 
 ```text
