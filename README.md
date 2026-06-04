@@ -59,6 +59,20 @@ El repositorio incluye reportes de entrenamiento experimentales para distintas c
 
 Estos reportes incluyen métricas, curvas, matrices de confusión y ejemplos visuales de predicción.
 
+## Capturas del proyecto
+
+### Prototipo de gestión agrícola
+
+![Backoffice](docs/screenshots/efarm-backoffice.png)
+
+### Detección y análisis de frutos
+
+![Detección de kiwi](docs/screenshots/kiwi-detection.png)
+
+### Detección de flores masculinas y femeninas
+
+![Detección de flores](docs/screenshots/flower-detection.png)
+
 ## Documentación
 
 - [Especificación resumida](docs/especificacion-resumida.md)
