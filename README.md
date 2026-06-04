@@ -73,17 +73,20 @@ Estos reportes incluyen métricas, curvas, matrices de confusión y ejemplos vis
 
 ![Detección de flores](docs/screenshots/Kiwi_flor_deteccion_dos.jpg)
 
+##Código representativo
+
+La carpeta src/ contiene una selección de código representativo del prototipo KiwiTrackingIA.
+
+Incluye componentes relacionados con FastAPI, integración con YOLO, OpenCV, procesamiento de imágenes, procesamiento de video y plantillas HTML utilizadas durante las pruebas.
+
+Los modelos entrenados, datasets, capturas, videos y archivos generados no forman parte del código publicado.
+
 ## Documentación
 
 - [Especificación resumida](docs/especificacion-resumida.md)
 - [Arquitectura y etapas](docs/arquitectura-y-etapas.md)
 - [Procesamiento de imágenes](docs/procesamiento-imagenes.md)
   
-## Nota
-
-No se incluyen datasets completos, modelos entrenados pesados ni información sensible del entorno original.
-El foco del repositorio es mostrar el análisis, la organización del proyecto y la línea técnica trabajada.
-
 ## Estructura del repositorio
 
 ```text
