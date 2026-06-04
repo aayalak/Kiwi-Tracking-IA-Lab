@@ -47,6 +47,18 @@ El proyecto fue pensado por etapas:
 - GitHub
 - Google Colab / AWS para entrenamiento futuro
 
+## Resultados de entrenamiento
+
+El repositorio incluye reportes de entrenamiento experimentales para distintas clases vinculadas al ciclo del kiwi:
+
+- [Resumen de entrenamientos](docs/training/resumen-entrenamientos.md)
+- [Yemas](docs/training/entrenamiento-yemas.md)
+- [Brotes](docs/training/entrenamiento-brotes.md)
+- [Flor](docs/training/entrenamiento-flor.md)
+- [Kiwis](docs/training/entrenamiento-kiwis.md)
+
+Estos reportes incluyen métricas, curvas, matrices de confusión y ejemplos visuales de predicción.
+
 ## Estructura del repositorio
 
 ```text
