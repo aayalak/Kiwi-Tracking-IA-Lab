@@ -28,4 +28,4 @@ Los resultados corresponden a pruebas experimentales. No representan un modelo p
 
 ## Ejemplo de resultados
 
-![Resultados entrenamiento kiwis](training/assets/kiwis-results.png)
+![Resultados entrenamiento kiwis](/assets/kiwis-results.png)
