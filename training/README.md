@@ -25,3 +25,7 @@ Los reportes incluyen:
 ## Nota
 
 Los resultados corresponden a pruebas experimentales. No representan un modelo productivo final.
+
+## Ejemplo de resultados
+
+![Resultados entrenamiento kiwis](training/assets/kiwis-results.png)
