@@ -75,7 +75,7 @@ Estos reportes incluyen métricas, curvas, matrices de confusión y ejemplos vis
 
 ## Código representativo
 
-La carpeta src/ contiene una selección de código representativo del prototipo KiwiTrackingIA.
+La carpeta [`src/`](src/) contiene una selección de código representativo del prototipo KiwiTrackingIA.
 
 Incluye componentes relacionados con FastAPI, integración con YOLO, OpenCV, procesamiento de imágenes, procesamiento de video y plantillas HTML utilizadas durante las pruebas.
 
