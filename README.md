@@ -78,7 +78,7 @@ Estos reportes incluyen métricas, curvas, matrices de confusión y ejemplos vis
 - [Especificación resumida](docs/especificacion-resumida.md)
 - [Arquitectura y etapas](docs/arquitectura-y-etapas.md)
 - [Procesamiento de imágenes](docs/procesamiento-imagenes.md)
-- 
+  
 ## Nota
 
 No se incluyen datasets completos, modelos entrenados pesados ni información sensible del entorno original.
