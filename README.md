@@ -51,11 +51,11 @@ El proyecto fue pensado por etapas:
 
 El repositorio incluye reportes de entrenamiento experimentales para distintas clases vinculadas al ciclo del kiwi:
 
-- [Resumen de entrenamientos](docs/training/resumen-entrenamientos.md)
-- [Yemas](docs/training/entrenamiento-yemas.md)
-- [Brotes](docs/training/entrenamiento-brotes.md)
-- [Flor](docs/training/entrenamiento-flor.md)
-- [Kiwis](docs/training/entrenamiento-kiwis.md)
+- [Resumen de entrenamientos](training/resumen-entrenamientos.md)
+- [Yemas](training/entrenamiento-yemas.md)
+- [Brotes](training/entrenamiento-brotes.md)
+- [Flor](training/entrenamiento-flor.md)
+- [Kiwis](training/entrenamiento-kiwis.md)
 
 Estos reportes incluyen métricas, curvas, matrices de confusión y ejemplos visuales de predicción.
 
